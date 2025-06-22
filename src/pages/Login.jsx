@@ -1,39 +1,36 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Authentication logic here
-    };
+  const handleLogin = async () => {
+    try {
+      const res = await axios.post("https://localhost:7030/api/auth/login", {
+        email,
+        password,
+      });
+      const token = res.data.token;
+      sessionStorage.setItem("token", token);
+      navigate("/dashboard");
+    } catch (err) {
+      alert("Login failed");
+    }
+  };
 
-    return (
-        <>        
-        <div className="w-full min-h-screen bg-blue-50">
-            <div className="hero min-h-screen">
-                <div className="card bg-base-100 w-full max-w-xl shrink-0 shadow-2xl">
-                    <h1 className="text-2xl text-Primary">test</h1>
-                <div className="hero-content w-full">
-                    <div className="card bg-base-100 w-full max-w-xl shrink-0 shadow-2xl">
-                        <div className="card-body">
-                            <fieldset className="fieldset">
-                                <label className="label text-lg">Email</label>                                
-                                <input type="email" className="input w-full" placeholder="Email" />
-                                <label className="label text-lg">Password</label>
-                                <input type="password" className="input w-full" placeholder="Password" />
-                                <div><a className="link link-hover">Forgot password?</a></div>
-                                <button className="btn btn-neutral mt-4">Login</button>
-                            </fieldset>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-base-200">
+      <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card-body">
+          <h2 className="card-title">Login</h2>
+          <input className="input input-bordered" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input className="input input-bordered mt-2" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <button className="btn btn-primary mt-4" onClick={handleLogin}>Login</button>
         </div>
-        </div>
-        </>
-    );
-};
-
-export default Login;
+      </div>
+    </div>
+  );
+}
