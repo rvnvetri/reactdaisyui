@@ -12,7 +12,7 @@ const Home = () => {
 
             
             <div className="hero flex w-full flex-col lg:flex-row">
-                <div className="card w-96 bg-base-100 card-m shadow-sm mb-2">
+                <div className="card w-96 bg-base-100 card-lg shadow-sm mb-2">
                     <div className="card-body">
                         <h2 className="card-title">STUDENT</h2>
                         <p>Login to your account with your credentials</p>
@@ -24,7 +24,7 @@ const Home = () => {
                     </div>
                 </div>
 
-                <div className="card w-96 bg-base-100 card-m shadow-sm mb-2">
+                <div className="card w-96 bg-base-100 card-lg shadow-sm mb-2">
                     <div className="card-body">
                         <h2 className="card-title">STAFF</h2>
                         <p>Login to your account with your credentials</p>
