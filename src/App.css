@@ -1,5 +1,17 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "nprogress/nprogress.css";
+
+.cbgcolor{
+  background-color :#0f578b!important;
+  color: white;
+}
+.cfontcolor{
+  color: #0f578b!important;
+}
 /* #root {
   max-width: 1280px;
   margin: 0 auto;
